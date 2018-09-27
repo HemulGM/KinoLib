@@ -5,10 +5,10 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, System.Generics.Collections, Vcl.Grids,
-  TableDraw, KinoLib.List, LKDU.Button, Vcl.ExtCtrls, HGM.Common.Settings,
-  System.ImageList, Vcl.ImgList, LKDU.SpinEdit, Vcl.StdCtrls, Vcl.Buttons, IdSSLOpenSSL,
+  KinoLib.List, Vcl.ExtCtrls, HGM.Common.Settings,
+  System.ImageList, Vcl.ImgList, Vcl.StdCtrls, Vcl.Buttons, IdSSLOpenSSL,
   HGM.Common.Utils, HGM.WinAPI.ShellDlg, acPNG, IdHTTP, IdURI,
-  Vcl.Menus, PanelExt;
+  Vcl.Menus, HGM.Controls.PanelExt, HGM.Controls.VirtualTable, HGM.Button;
 
 type
   TKinoElement = record
