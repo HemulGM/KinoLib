@@ -90,6 +90,7 @@ object FormMain: TFormMain
       OnClick = ButtonFlatQuitClick
       RoundRectParam = 5
       Shape = stRoundRect
+      ShowFocusRect = False
       TabOrder = 0
       TabStop = True
       TextFormat = [tfSingleLine, tfVerticalCenter]
@@ -134,6 +135,7 @@ object FormMain: TFormMain
       OnPaint = ButtonFlatSavePaint
       RoundRectParam = 5
       Shape = stRoundRect
+      ShowFocusRect = False
       TabOrder = 1
       TabStop = True
       TextFormat = [tfSingleLine, tfVerticalCenter]
@@ -177,6 +179,7 @@ object FormMain: TFormMain
       OnClick = ButtonFlatImportClick
       RoundRectParam = 5
       Shape = stRoundRect
+      ShowFocusRect = False
       TabOrder = 2
       TabStop = True
       TextFormat = [tfSingleLine, tfVerticalCenter]
@@ -220,6 +223,7 @@ object FormMain: TFormMain
       OnClick = ButtonFlatFilterClick
       RoundRectParam = 5
       Shape = stRoundRect
+      ShowFocusRect = False
       TabOrder = 3
       TabStop = True
       TextFormat = [tfSingleLine, tfVerticalCenter]
@@ -263,6 +267,7 @@ object FormMain: TFormMain
       OnClick = ButtonFlatStatClick
       RoundRectParam = 5
       Shape = stRoundRect
+      ShowFocusRect = False
       TabOrder = 4
       TabStop = True
       TextFormat = [tfSingleLine, tfVerticalCenter]
@@ -918,6 +923,7 @@ object FormMain: TFormMain
         OnClick = ButtonSearchClick
         RoundRectParam = 0
         Shape = stCircle
+        ShowFocusRect = False
         TabOrder = 1
         TabStop = True
         TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
@@ -961,6 +967,7 @@ object FormMain: TFormMain
         OnClick = ButtonFlatSearchClearClick
         RoundRectParam = 0
         Shape = stCircle
+        ShowFocusRect = False
         TabOrder = 2
         TabStop = True
         TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
@@ -1007,6 +1014,7 @@ object FormMain: TFormMain
       OnClick = ButtonFlat2Click
       RoundRectParam = 30
       Shape = stCircle
+      ShowFocusRect = False
       TabOrder = 1
       TabStop = True
       TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
@@ -1042,6 +1050,7 @@ object FormMain: TFormMain
       OnEdit = TableExListEdit
       OnEditCancel = TableExListEditCancel
       OnEditOk = TableExListEditOk
+      Columns = <>
       CanNoSelect = False
       ItemCount = 1
       LineColor = 16250869
@@ -1070,11 +1079,6 @@ object FormMain: TFormMain
       ColumnsFont.Style = []
       ShowFocus = True
       FlashSelectedCol = True
-      ColWidths = (
-        60)
-      RowHeights = (
-        35
-        35)
     end
     object PanelFilter: TPanel
       Left = 0
@@ -1138,7 +1142,7 @@ object FormMain: TFormMain
         Left = 86
         Top = 6
         Width = 75
-        Height = 29
+        Height = 27
         Margins.Left = 5
         Margins.Top = 5
         Margins.Right = 5
@@ -1153,7 +1157,7 @@ object FormMain: TFormMain
         Left = 166
         Top = 6
         Width = 291
-        Height = 29
+        Height = 27
         Margins.Left = 0
         Margins.Top = 5
         Margins.Right = 5
@@ -1228,6 +1232,7 @@ object FormMain: TFormMain
         NotifyWidth = 0
         OnClick = ButtonFlat4Click
         RoundRectParam = 0
+        ShowFocusRect = False
         TabOrder = 3
         TabStop = True
         TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
@@ -1312,6 +1317,7 @@ object FormMain: TFormMain
         OnClick = ButtonFlatFilmAddClick
         RoundRectParam = 30
         Shape = stRoundRect
+        ShowFocusRect = False
         TabOrder = 0
         TabStop = True
         TextFormat = [tfSingleLine, tfVerticalCenter]
@@ -1357,6 +1363,7 @@ object FormMain: TFormMain
         OnClick = ButtonFlatFilmDeleteClick
         RoundRectParam = 30
         Shape = stRoundRect
+        ShowFocusRect = False
         TabOrder = 1
         TabStop = True
         TextFormat = [tfSingleLine, tfVerticalCenter]
@@ -1402,6 +1409,7 @@ object FormMain: TFormMain
         OnClick = ButtonFlatFilmFindClick
         RoundRectParam = 30
         Shape = stRoundRect
+        ShowFocusRect = False
         TabOrder = 2
         TabStop = True
         TextFormat = [tfSingleLine, tfVerticalCenter]
@@ -1447,6 +1455,7 @@ object FormMain: TFormMain
         OnClick = ButtonFlatKSearchClick
         RoundRectParam = 30
         Shape = stRoundRect
+        ShowFocusRect = False
         TabOrder = 3
         TabStop = True
         TextFormat = [tfSingleLine, tfVerticalCenter]
@@ -1492,6 +1501,7 @@ object FormMain: TFormMain
         OnClick = ButtonFlatFindFilmGoogleClick
         RoundRectParam = 30
         Shape = stRoundRect
+        ShowFocusRect = False
         TabOrder = 4
         TabStop = True
         TextFormat = [tfSingleLine, tfVerticalCenter]
@@ -1537,6 +1547,7 @@ object FormMain: TFormMain
         OnClick = ButtonFlat1Click
         RoundRectParam = 30
         Shape = stRoundRect
+        ShowFocusRect = False
         TabOrder = 5
         TabStop = True
         TextFormat = [tfSingleLine, tfVerticalCenter]
@@ -1571,6 +1582,7 @@ object FormMain: TFormMain
         ItemIndex = -1
         GetData = TableExKinoSearchGetData
         OnEdit = TableExKinoSearchEdit
+        Columns = <>
         CanNoSelect = False
         ItemCount = 1
         LineColor = 16250869
@@ -1597,10 +1609,6 @@ object FormMain: TFormMain
         ColumnsFont.Height = -11
         ColumnsFont.Name = 'Tahoma'
         ColumnsFont.Style = []
-        ColWidths = (
-          60)
-        RowHeights = (
-          30)
       end
       object PanelKSearchTop: TPanel
         Left = 0
@@ -1615,8 +1623,8 @@ object FormMain: TFormMain
           AlignWithMargins = True
           Left = 62
           Top = 11
-          Width = 234
-          Height = 33
+          Width = 840
+          Height = 32
           Margins.Left = 10
           Margins.Top = 10
           Margins.Right = 10
@@ -1630,6 +1638,8 @@ object FormMain: TFormMain
           Font.Style = []
           Font.Quality = fqAntialiased
           ParentFont = False
+          ExplicitWidth = 234
+          ExplicitHeight = 33
         end
         object Shape5: TShape
           Left = 0
@@ -1681,6 +1691,7 @@ object FormMain: TFormMain
           OnClick = ButtonFlatKSearchCloseClick
           RoundRectParam = 0
           Shape = stCircle
+          ShowFocusRect = False
           TabOrder = 0
           TabStop = True
           TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
@@ -1708,8 +1719,8 @@ object FormMain: TFormMain
         AlignWithMargins = True
         Left = 62
         Top = 10
-        Width = 313
-        Height = 33
+        Width = 840
+        Height = 32
         Margins.Left = 10
         Margins.Top = 10
         Margins.Right = 10
@@ -1722,6 +1733,8 @@ object FormMain: TFormMain
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
+        ExplicitWidth = 313
+        ExplicitHeight = 33
       end
       object ButtonFlat3: TButtonFlat
         AlignWithMargins = True
@@ -1763,6 +1776,7 @@ object FormMain: TFormMain
         OnClick = ButtonFlatHideStatClick
         RoundRectParam = 0
         Shape = stCircle
+        ShowFocusRect = False
         TabOrder = 0
         TabStop = True
         TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
@@ -1813,8 +1827,8 @@ object FormMain: TFormMain
         AlignWithMargins = True
         Left = 190
         Top = 3
-        Width = 490
-        Height = 48
+        Width = 492
+        Height = 46
         Margins.Left = 10
         Align = alClient
         Caption = 
@@ -1829,6 +1843,8 @@ object FormMain: TFormMain
         ParentFont = False
         Layout = tlCenter
         WordWrap = True
+        ExplicitWidth = 490
+        ExplicitHeight = 48
       end
       object ButtonFlat6: TButtonFlat
         AlignWithMargins = True
@@ -1868,6 +1884,7 @@ object FormMain: TFormMain
         OnClick = ButtonFlat6Click
         RoundRectParam = 42
         Shape = stRoundRect
+        ShowFocusRect = False
         TabOrder = 0
         TabStop = True
         TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
@@ -1912,6 +1929,7 @@ object FormMain: TFormMain
         OnClick = ButtonFlat5Click
         RoundRectParam = 42
         Shape = stRoundRect
+        ShowFocusRect = False
         TabOrder = 1
         TabStop = True
         TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
@@ -1938,8 +1956,8 @@ object FormMain: TFormMain
         AlignWithMargins = True
         Left = 62
         Top = 10
-        Width = 138
-        Height = 33
+        Width = 788
+        Height = 32
         Margins.Left = 10
         Margins.Top = 10
         Margins.Right = 10
@@ -1952,6 +1970,8 @@ object FormMain: TFormMain
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
+        ExplicitWidth = 138
+        ExplicitHeight = 33
       end
       object ButtonFlatHideStat: TButtonFlat
         AlignWithMargins = True
@@ -1993,6 +2013,7 @@ object FormMain: TFormMain
         OnClick = ButtonFlatHideStatClick
         RoundRectParam = 0
         Shape = stCircle
+        ShowFocusRect = False
         TabOrder = 0
         TabStop = True
         TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
@@ -2037,6 +2058,7 @@ object FormMain: TFormMain
         OnClick = ButtonFlatStatUpdateClick
         RoundRectParam = 0
         Shape = stCircle
+        ShowFocusRect = False
         TabOrder = 1
         TabStop = True
         TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
@@ -2078,6 +2100,7 @@ object FormMain: TFormMain
         TabOrder = 0
         ItemIndex = -1
         GetData = TableExStatGetData
+        Columns = <>
         ShowScrollBar = False
         CanNoSelect = False
         ItemCount = 1
@@ -2103,10 +2126,6 @@ object FormMain: TFormMain
         ColumnsFont.Name = 'Tahoma'
         ColumnsFont.Style = []
         DrawColumnBorded = False
-        ColWidths = (
-          60)
-        RowHeights = (
-          25)
       end
       object DrawPanel1: TDrawPanel
         Left = 6
@@ -2128,7 +2147,7 @@ object FormMain: TFormMain
     Left = 94
     Top = 392
     Bitmap = {
-      494C01010800D0009C0020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C01010800D000A40020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       00000000000036000000280000008000000060000000010020000000000000C0
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -3726,7 +3745,7 @@ object FormMain: TFormMain
     Left = 94
     Top = 320
     Bitmap = {
-      494C01011400A000F40018001800FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C01011400A000FC0018001800FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       00000000000036000000280000006000000090000000010020000000000000D8
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

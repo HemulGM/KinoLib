@@ -636,7 +636,8 @@ begin
    end;
   Genres.Free;
 
-  Marks:=Marks div MCount;
+  if MCount > 0 then
+   Marks:=Marks div MCount;
   Add(TKinoStatRecord.Create('Всего фильмов:', IntToStr(Lib.Count)));
   Add(TKinoStatRecord.Create('Нужно посмотреть:', IntToStr(Lib.Count-Viewed)));
   Add(TKinoStatRecord.Create('Просмотрено фильмов:', IntToStr(Viewed)));

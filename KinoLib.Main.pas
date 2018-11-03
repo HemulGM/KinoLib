@@ -1163,6 +1163,7 @@ begin
  FSettings:=TSettingsIni.Create(ExtractFilePath(ParamStr(0))+'\config.ini');
  with TableExList do
   begin
+   BeginAddColumns;
    AddColumn('', 32);
    AddColumn('Заголовок', FSettings.GetInt('Columns', 'Caption', 200));
    AddColumn('Тип', FSettings.GetInt('Columns', 'Type', 100));
@@ -1175,6 +1176,7 @@ begin
    AddColumn('Информация', FSettings.GetInt('Columns', 'Info', 150));
    AddColumn('Дата добавления', FSettings.GetInt('Columns', 'Date', 120));
    AddColumn('', 10);
+   EndAddColumns;
   end;
  FSettings.GetParamWindow('General', FormMain, [wpsAll]);
  FKinoList:=TKinoItems.Create(TableExList, ExtractFilePath(ParamStr(0))+'data.db');
@@ -1186,18 +1188,22 @@ begin
  FStat:=TKinoStatistics.Create(TableExStat);
  with TableExStat do
   begin
+   BeginAddColumns;
    AddColumn('Параметр', 250);
    AddColumn('Значение', 100);
+   EndAddColumns;
   end;
  FStat.UpdateStat(FKinoList);
  FSearchList:=TKinoElements.Create(TableExKinoSearch);
  with TableExKinoSearch do
   begin
+   BeginAddColumns;
    AddColumn('Заголовок', 250);
    AddColumn('Год', 100);
    AddColumn('Рейтинг', 50);
    AddColumn('Жанр', 200);
    AddColumn('Информация', 220);
+   EndAddColumns;
   end;
  FSearchList.UpdateTable;
  PanelMenu.Width:=46;
