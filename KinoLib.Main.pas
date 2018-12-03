@@ -91,6 +91,11 @@ type
     ButtonFlat1: TButtonFlat;
     MenuItemSetKID: TMenuItem;
     N7: TMenuItem;
+    PanelListTools: TPanel;
+    Shape6: TShape;
+    LabelListCount: TLabel;
+    LabelListNotViewed: TLabel;
+    ButtonFlat7: TButtonFlat;
     procedure TableExListGetData(FCol, FRow: Integer; var Value: string);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -143,6 +148,7 @@ type
     procedure ButtonFlatSavePaint(Sender: TObject);
     procedure ButtonFlat1Click(Sender: TObject);
     procedure MenuItemSetKIDClick(Sender: TObject);
+    procedure ButtonFlat7Click(Sender: TObject);
   private
     FSaveNotify:Boolean;
     FKinoList:TKinoItems;
@@ -162,6 +168,7 @@ type
     procedure LoadFile(FileName: string);
     function WebSearch(const Index: Integer): Integer;
     procedure UpdateFilterNotify;
+    procedure UpdateStat;
   public
     procedure LoadList;
     procedure SaveList;
@@ -178,7 +185,7 @@ var
   function GetHTMLTag(HTMLData, Tag, Param:string; FullTag:Boolean = False):string; overload;
 
 implementation
- uses ShellAPI, Direct2D, D2D1, ComObj, ActiveX,
+ uses ShellAPI, Direct2D, D2D1, ComObj, ActiveX, Math,
       MSHTML, ADODB_TLB, CDO_TLB, System.StrUtils, Clipbrd;
 
 {$R *.dfm}
@@ -364,12 +371,19 @@ end;
 
 procedure TFormMain.ButtonFlatStatUpdateClick(Sender: TObject);
 begin
- FStat.UpdateStat(FKinoList);
+ UpdateStat;
 end;
 
 procedure TFormMain.ButtonFlatSearchClearClick(Sender: TObject);
 begin
  EditSearch.Clear;
+end;
+
+procedure TFormMain.UpdateStat;
+begin
+ FStat.UpdateStat(FKinoList);
+ LabelListCount.Caption:='Всего: '+FStat.Items[0].Value;
+ LabelListNotViewed.Caption:='Не просмотрено: '+FStat.Items[1].Value;
 end;
 
 procedure TFormMain.FilmDelete;
@@ -385,6 +399,7 @@ begin
    if not AskYesNo('Прошу ответить', 'Удалить выбранный элемент из списка?') then Exit
   end;
  FKinoList.DeleteRecord(TableExList.ItemIndex);
+ UpdateStat;
  ButtonFlatSave.NotifyVisible:=True;
 end;
 
@@ -445,6 +460,7 @@ var i, r, j, p:Integer;
     Data:TKinoElement;
     CItem:TKinoItem;
 begin
+ if MessageBox(Handle, 'Выполнить заполнение данными по всем фильмам?', 'Вопрос', MB_ICONINFORMATION or MB_YESNO) <> ID_YES then Exit;
  LabelKSearch.Caption:='Подождите, идёт поиск...';
  PanelKSearch.Show;
  PanelKSearch.BringToFront;
@@ -567,154 +583,22 @@ begin
  FormMain.KinoList.Save;
 end;
 
-{
-<div class="element most_wanted">
-  <div class="right">
-      <div class="rating  ratingGreenBG" title="7.090 (4&nbsp;335)">7.1</div>
-      <ul class="links">
-         <li><a href="/film/vo-vlasti-stikhii-2018-1015040/cast/#actor" data-url="/film/vo-vlasti-stikhii-2018-1015040/cast/#actor" class="js-serp-metrika" data-id="1015040" data-type="film">актеры</a><s></s></li>
-         <li><a href="/film/vo-vlasti-stikhii-2018-1015040/video/" data-url="/film/vo-vlasti-stikhii-2018-1015040/video/" class="js-serp-metrika" data-id="1015040" data-type="film" data-popup-info="disabled">трейлеры</a><s></s></li>
-         <li><a href="/film/vo-vlasti-stikhii-2018-1015040/stills/" data-url="/film/vo-vlasti-stikhii-2018-1015040/stills/" class="js-serp-metrika" data-id="1015040" data-type="film" data-popup-info="disabled">кадры</a><s></s></li>
-         <li><a href="/film/vo-vlasti-stikhii-2018-1015040/posters/" data-url="/film/vo-vlasti-stikhii-2018-1015040/posters/" class="js-serp-metrika" data-id="1015040" data-type="film">постеры</a><s></s></li>
-         <li><a href="/film/vo-vlasti-stikhii-2018-1015040/afisha/city/1/" data-url="/film/vo-vlasti-stikhii-2018-1015040/afisha/city/1/" class="js-serp-metrika" data-id="1015040" data-type="film">сеансы</a><s></s></li>
-         <li class="inactive">сайты<s></s></li>
-         <li class="inactive">DVD<s></s></li>
-      </ul>
-  </div>
-  <p class="pic"><a href="/film/vo-vlasti-stikhii-2018-1015040/sr/1/" class="js-serp-metrika" data-url="/film/vo-vlasti-stikhii-2018-1015040/" data-id="1015040" data-type="film"><img class="" src="https://st.kp.yandex.net/images/sm_film/1015040.jpg" title="" alt="Во власти стихии" id="FlappImg_0" style="opacity: 1;"></a></p>
-  <div class="info">
-     <p class="name"><a href="/film/vo-vlasti-stikhii-2018-1015040/sr/1/" class="js-serp-metrika" data-url="/film/vo-vlasti-stikhii-2018-1015040/" data-id="1015040" data-type="film" data-popup-info="disabled">Во власти стихии</a> <span class="year">2018</span></p>
-     <span class="gray">Adrift, 96 мин</span>
-     <span class="gray">США... <i class="director">реж. <a class="lined js-serp-metrika" href="/name/19908/" data-url="/name/19908/" data-id="1015040" data-type="film" data-popup-info="enabled">Бальтасар Кормакур</a></i>
-     	<br>(боевик, триллер, драма...)
-     </span>
-     <span class="gray">
-      <a class="lined js-serp-metrika" href="/name/1004809/" data-url="/name/1004809/" data-id="1015040" data-type="film">Шейлин Вудли</a>, <a class="lined js-serp-metrika" href="/name/1829631/" data-url="/name/1829631/" data-id="1015040" data-type="film">Сэм Клафлин</a>, <a class="lined js-serp-metrika" href="/film/vo-vlasti-stikhii-2018-1015040/cast/#actor" data-url="/film/vo-vlasti-stikhii-2018-1015040/cast/#actor" data-id="1015040" data-type="film">...</a>
-     </span>
-  </div>
-  <div class="clear"></div>
-</div>
-}
-
-{
-<div id="photoInfoTable" class="clearfix">
-    <div id="headerFilm" class="feature_film_header feature_film_header_603111 country_num3">
-        <h1 class="moviename-big" itemprop="name">Нечувствительный</h1>
-        <span itemprop="alternativeHeadline">Insensibles</span>
-        <div class="movieFlags"><div class="flag flag15" title="Испания"><a href="/lists/m_act%5Bcountry%5D/15/"></a></div><div class="flag flag8" title="Франция"><a href="/lists/m_act%5Bcountry%5D/8/"></a></div><div class="flag flag36" title="Португалия"><a href="/lists/m_act%5Bcountry%5D/36/"></a></div></div>
-    </div>
-    <div id="photoBlock" class="originalPoster">
-        <div class="film-img-box feature_film_img_box feature_film_img_box_603111">
-
-            <a class="addFolder" title="Буду смотреть" href="#"></a>
-
-
-                <span class="left_bg"></span>
-                <span class="bottom_bg"></span>
-                <a class="popupBigImage" href="#" onclick="openImgPopup('/images/film_big/603111.jpg'); return false">
-                    <img width="205" src="https://st.kp.yandex.net/images/film_iphone/iphone360_603111.jpg" alt="Нечувствительный (Insensibles)" itemprop="image">
-                </a>
-
-        </div>
-
-
-    <div itemscope="" itemtype="http://schema.org/VideoObject">
-<meta itemprop="name" content="Нечувствительный">
-<meta itemprop="thumbnail" content="http://avatars.mds.yandex.net/get-ott/223007/2a0000016235c4cd1cca9f1eb642b67519f8/orig">
-<link itemprop="thumbnailUrl" href="http://avatars.mds.yandex.net/get-ott/223007/2a0000016235c4cd1cca9f1eb642b67519f8/orig">
-<link itemprop="url" href="https://frontend.vh.yandex.ru/player/759006820312088963">
-<link itemprop="embedUrl" href="https://frontend.vh.yandex.ru/player/759006820312088963">
-<meta itemprop="duration" content="01:41:06">
-<meta itemprop="isFamilyFriendly" content="false">
-<meta itemprop="description" content="The truth is painful">
-<meta itemprop="uploadDate" content="1970-01-18T18:03:21+0300">
-
-        <meta itemprop="videoQuality" content="HD">
-</div>
-
-        <div class="movie-buttons-container">
-
-                <div class="js-ott-widget online_button_film" data-from="kp" data-kp-film-id="603111" data-title="Нечувствительный" style="display: block;" data-film-id="4b2d5d2776e5a34191b8ca6a394a4db2" data-element-inited="true">
-                    <button class="js-ott-widget__button movie-online-button feature_online_button_film feature_online_button_film_603111 js-ott-widget__button_orange" data-from="kp" data-kp-film-id="603111" data-title="Нечувствительный" style="background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18'%3E %3Cg fill='none' fill-rule='evenodd'%3E %3Cpath d='M0 0h18v18H0z'/%3E %3Cpath fill='%23FFF' d='M5 2v14l12-7z'/%3E %3C/g%3E %3C/svg%3E&quot;); background-repeat: no-repeat; background-position: 10px 50%;">Смотреть</button>
-                    <div class="js-ott-widget__subscribe movie-online-plus" style="display: block;">
-                        <div class="movie-online-plus__text">
-                            <div class="movie-online-plus__badge"></div><span class="movie-online-plus__ad-free">По подписке</span>
-                        </div>
-                    </div>
-                </div>
-        </div>
-
-    </div>
-    <div data-metrika="film_info" id="infoTable" class="js-rum-hero">
-    <table class="info">
-        <tbody><tr>
-            <td class="type">год</td>
-            <td><div style="position: relative">
-                <a href="/lists/m_act%5Byear%5D/2012/" title="">2012</a>
-
-            </div></td>
-        </tr>
-        <tr>
-            <td class="type">страна</td>
-            <td><div style="position: relative">
-                <a href="/lists/m_act%5Bcountry%5D/15/">Испания</a>, <a href="/lists/m_act%5Bcountry%5D/8/">Франция</a>, <a href="/lists/m_act%5Bcountry%5D/36/">Португалия</a>
-            </div></td>
-        </tr>
-        <tr><td class="type">слоган</td><td style="color: #555">«The truth is painful»</td></tr>
-        <tr><td class="type">режиссер</td><td itemprop="director"><a href="/name/953650/">Хуан Карлос Медина</a></td></tr>
-        <tr><td class="type">сценарий</td><td><a href="/name/774034/">Луисо Бердехо</a>, <a href="/name/953650/">Хуан Карлос Медина</a></td></tr>
-        <tr><td class="type">продюсер</td><td itemprop="producer"><a href="/name/1309500/">Адольфо Бланко</a>, <a href="/name/389953/">Франсуа Коньяр</a>, <a href="/name/485074/">Антуан Симкине</a>, <a href="/film/603111/cast/#producer">...</a></td></tr>
-
-        <tr><td class="type">оператор</td><td><a href="/name/742064/">Алехандро Мартинес</a></td></tr>
-        <tr><td class="type">композитор</td><td itemprop="musicBy"><a href="/name/497704/">Юхан Сёдерквист</a></td></tr>
-        <tr><td class="type">художник</td><td><a href="/name/2004991/">Иниго Наварро</a>, <a href="/name/2041271/">Ромина Хауссман</a>, <a href="/name/1988520/">Ариадна Папио</a></td></tr>
-        <tr><td class="type">монтаж</td><td><a href="/name/1070840/">Педро Рибейро</a></td></tr>
-        <tr><td class="type">жанр</td><td>
-            <span itemprop="genre"><a href="/lists/m_act%5Bgenre%5D/1/">ужасы</a>, <a href="/lists/m_act%5Bgenre%5D/5/">фэнтези</a>, <a href="/lists/m_act%5Bgenre%5D/4/">триллер</a>, <a href="/lists/m_act%5Bgenre%5D/17/">детектив</a></span>, <a href="/film/603111/keywords/">...</a>
-            <a class="wordLinks" href="/film/603111/keywords/">слова</a>
-        </td></tr>
-
-            <tr class="en">
-                <td class="type">бюджет</td>
-                <td class="euro"><div style="position: relative">
-                    €3&nbsp;520&nbsp;000
-                </div></td>
-            </tr>
-            <tr>
-                <td class="type">зрители</td>
-                <td><div style="position: relative"><div style="margin-left: -20px">
-                    <img src="https://st.kp.yandex.net/images/flags/flag-8.gif" width="16" height="11" alt="Франция" title="Франция">&nbsp;&nbsp;7.3 тыс.,&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://st.kp.yandex.net/images/flags/flag-7.gif" width="16" height="11" alt="Финляндия" title="Финляндия">&nbsp;&nbsp;4.7 тыс.,&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://st.kp.yandex.net/images/flags/flag-15.gif" width="16" height="11" alt="Испания" title="Испания">&nbsp;&nbsp;4.2 тыс., <a href="/film/603111/dates/">...</a>
-                </div></div></td>
-            </tr>
-            <tr>
-                <td id="div_world_prem_td1" class="type">премьера (мир)</td>
-                <td id="div_world_prem_td2" class="calendar" style="cursor: pointer">
-                    <div style="position: relative" title="Дополнительная информация">
-                        <div class="prem_ical" title="Добавить в календарь" data-ical-type="world" data-ical-date="8 сентября 2012" data-date-premier-start-link="20120908" data-date-premier-stop-link="20120909" data-ical-rerelease=""><!-- //--></div>
-                        <a href="/film/603111/dates/" title="">8 сентября 2012</a>, <a href="/film/603111/dates/" title="">...</a>
-                        <meta itemprop="dateCreated" content="2012-09-08">
-                        <s class="popup_help_icon" title="Дополнительная информация"></s>
-                    </div>
-                </td>
-            </tr>
-            <tr class="ratePopup" onmouseover="$('.ratePopup').addClass('ratePopupAct')" onmouseout="$('.ratePopup').removeClass('ratePopupAct')">
-                <td class="type">возраст</td>
-                <td style="color: #555">
-                    <div class="ageLimit age18"></div>
-                    <span style="margin-left: 3px">зрителям, достигшим 18 лет</span>
-                </td>
-            </tr>
-        <tr><td class="type">время</td><td class="time" id="runtime">101 мин. <span style="color: #999">/</span> 01:41</td></tr>
-    </tbody></table>
-  </div>
-    <div id="actorList" class="clearfix">
-
-            <h4>В главных ролях:</h4>
-            <ul><li itemprop="actors"><a href="/name/247531/">Алекс Брендемюль</a></li><li itemprop="actors"><a href="/name/230758/">Томас Лемаркус</a></li><li itemprop="actors"><a href="/name/2548256/" data-popup-info="enabled">Илиас Стотхарт</a></li><li itemprop="actors"><a href="/name/2548255/">Мот Харрис Данлоп Стотхарт</a></li><li itemprop="actors"><a href="/name/4929/">Дерек де Линт</a></li><li itemprop="actors"><a href="/name/388789/">Рамон Фонтсере</a></li><li itemprop="actors"><a href="/name/449037/">Сильвия Бель</a></li><li itemprop="actors"><a href="/name/446682/">Беа Сегура</a></li><li itemprop="actors"><a href="/name/17008/">Хуан Диего</a></li><li itemprop="actors"><a href="/name/439185/">Феликс Гомес</a></li><li itemprop="actors"><a href="/film/603111/cast/">...</a></li></ul>
-        <h4><a href="/film/603111/cast/">показать всех</a> »</h4>
-    </div>
-</div>
-}
+procedure TFormMain.ButtonFlat7Click(Sender: TObject);
+var i, r:Integer;
+begin
+ Randomize;
+ r:=0;
+ for i:= 0 to 10 do
+  begin
+   repeat
+    r:=Random(FKinoList.Count);
+   until IndexInList(r, FKinoList.Count) and (FKinoList[r].Viewed = False);
+   TableExList.ItemIndex:=r;
+   Application.ProcessMessages;
+   Sleep(i*20);
+  end;
+ FilmFindKinopoisk;
+end;
 
 function TFormMain.WebSearch(const Index:Integer):Integer;
 var RequestURL, tmp, tmp2:string;
@@ -903,6 +787,7 @@ begin
  FKinoList.Insert(0, Item);
  TableExList.ItemIndex:=0;
  TableExList.Edit(0, 1);
+ UpdateStat;
  ButtonFlatSave.NotifyVisible:=True;
 end;
 
@@ -1055,6 +940,7 @@ begin
  Group1.Add(PanelMenu);
  Group1.Add(PanelFilter);
  Group1.Add(PanelList);
+ Group1.Add(PanelListTools);
 
  Group2.Add(PanelStatTop);
  Group2.Add(PanelImportTop);
@@ -1152,7 +1038,7 @@ procedure TFormMain.SetInterface;
 begin
  FMainColor:=$009A572B;
  SetMenuColor(FMainColor);
- SetMenuIconColor(ColorLighter(FMainColor, 60));
+ SetMenuIconColor(ColorLighter(FMainColor, 50));
  PanelList.BringToFront;
 end;
 
@@ -1193,7 +1079,7 @@ begin
    AddColumn('Значение', 100);
    EndAddColumns;
   end;
- FStat.UpdateStat(FKinoList);
+ UpdateStat;
  FSearchList:=TKinoElements.Create(TableExKinoSearch);
  with TableExKinoSearch do
   begin
@@ -1377,7 +1263,7 @@ begin
      begin
       Brush.Color:=ColorDarker(TableExList.ColumnsColor);
       Pen.Color:=Brush.Color;
-      Pen.Width:=3;
+      Pen.Width:=4;
       MoveTo(Rect.Left, Rect.Bottom-4);
       LineTo(Rect.Right, Rect.Bottom-4);
       //if FKinoList.OrderDesc then
@@ -1395,6 +1281,7 @@ begin
 end;
 
 procedure TFormMain.TableExListEdit(Sender: TObject; var Data: TTableEditStruct; ACol, ARow: Integer; var Allow: Boolean);
+var i:Integer;
 begin
  Allow:=False;
  if not IndexInList(ARow, FKinoList.Count) then Exit;
@@ -1439,7 +1326,12 @@ begin
    end;
   5:
    begin
-    Data.EditMode:=teFloat;
+    Data.EditMode:=teList;
+    Data.FixedList:=False;
+    Data.ListDrop:=True;
+    Data.Items:=TStringList.Create;
+    Data.Items.Add('Нет');
+    for i:=1 to 10 do Data.Items.Add(IntToStr(i));
     Data.TextValue:=FloatToStr(FKinoList.Items[ARow].Rating);
     if Data.TextValue = '0' then Data.TextValue:='';
     Data.ReadOnly:=False;
@@ -1447,7 +1339,12 @@ begin
    end;
   6:
    begin
-    Data.EditMode:=teFloat;
+    Data.EditMode:=teList;
+    Data.FixedList:=False;
+    Data.ListDrop:=True;
+    Data.Items:=TStringList.Create;
+    Data.Items.Add('Нет');
+    for i:=1 to 10 do Data.Items.Add(IntToStr(i));
     Data.TextValue:=FloatToStr(FKinoList.Items[ARow].Rating2);
     if Data.TextValue = '0' then Data.TextValue:='';
     Data.ReadOnly:=False;
@@ -1491,6 +1388,7 @@ procedure TFormMain.TableExListEditCancel(Sender: TObject; ACol, ARow: Integer);
 begin
  if not IndexInList(ARow, FKinoList.Count) then Exit;
  if FKinoList.Items[ARow].Empty then FKinoList.Delete(ARow);
+ UpdateStat;
 end;
 
 procedure TFormMain.TableExListEditOk(Sender: TObject; Value: string; ItemValue, ACol, ARow: Integer);
@@ -1501,8 +1399,8 @@ begin
   2: FKinoList.Items[ARow].KinoType:=TKinoType(ItemValue);
   3: FKinoList.Items[ARow].Year:=StrToInt(Value);
   4: FKinoList.Items[ARow].Genre:=Value;
-  5: FKinoList.Items[ARow].Rating:=StrToInt(Value);
-  6: FKinoList.Items[ARow].Rating2:=StrToInt(Value);
+  5: FKinoList.Items[ARow].Rating:=Max(0, Min(ItemValue, 10));
+  6: FKinoList.Items[ARow].Rating2:=Max(0, Min(ItemValue, 10));
   7: FKinoList.Items[ARow].Viewed:=Boolean(ItemValue);
   8: FKinoList.Items[ARow].KPMarked:=Boolean(ItemValue);
   9: FKinoList.Items[ARow].Info:=Value;
@@ -1540,6 +1438,7 @@ begin
   8: FKinoList.Items[TableExList.ItemIndex].KPMarked:=not FKinoList.Items[TableExList.ItemIndex].KPMarked;
  end;
  FKinoList.UpdateRecord(TableExList.ItemIndex);
+ UpdateStat;
  ButtonFlatSave.NotifyVisible:=True;
 end;
 
