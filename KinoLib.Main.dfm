@@ -132,7 +132,6 @@ object FormMain: TFormMain
       ImageIndex = 7
       Images = ImageListButtons
       OnClick = ButtonFlatSaveClick
-      OnPaint = ButtonFlatSavePaint
       RoundRectParam = 5
       Shape = stRoundRect
       ShowFocusRect = False
@@ -283,7 +282,6 @@ object FormMain: TFormMain
     Color = clWhite
     ParentBackground = False
     TabOrder = 3
-    ExplicitWidth = 1115
     object Label4: TLabel
       Left = 129
       Top = 0
@@ -1030,7 +1028,6 @@ object FormMain: TFormMain
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 4
-    ExplicitWidth = 912
     object PanelImportTop: TPanel
       Left = 0
       Top = 0
@@ -1039,7 +1036,6 @@ object FormMain: TFormMain
       Align = alTop
       BevelOuter = bvNone
       TabOrder = 0
-      ExplicitWidth = 912
       object Label5: TLabel
         AlignWithMargins = True
         Left = 62
@@ -1129,7 +1125,6 @@ object FormMain: TFormMain
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goEditing, goThumbTracking]
       ScrollBars = ssVertical
       TabOrder = 1
-      ExplicitWidth = 912
       ColWidths = (
         64
         64
@@ -1149,7 +1144,6 @@ object FormMain: TFormMain
       Color = 10114859
       ParentBackground = False
       TabOrder = 2
-      ExplicitWidth = 912
       object Label6: TLabel
         AlignWithMargins = True
         Left = 190
@@ -1170,7 +1164,6 @@ object FormMain: TFormMain
         ParentFont = False
         Layout = tlCenter
         WordWrap = True
-        ExplicitWidth = 490
         ExplicitHeight = 48
       end
       object ButtonFlat6: TButtonFlat
@@ -1215,7 +1208,6 @@ object FormMain: TFormMain
         TabOrder = 0
         TabStop = True
         TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
-        ExplicitLeft = 690
       end
       object ButtonFlat5: TButtonFlat
         AlignWithMargins = True
@@ -1272,7 +1264,6 @@ object FormMain: TFormMain
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 2
-    ExplicitWidth = 912
     object PanelStatTop: TPanel
       Left = 0
       Top = 0
@@ -1281,7 +1272,6 @@ object FormMain: TFormMain
       Align = alTop
       BevelOuter = bvNone
       TabOrder = 0
-      ExplicitWidth = 912
       object Label3: TLabel
         AlignWithMargins = True
         Left = 62
@@ -1392,7 +1382,6 @@ object FormMain: TFormMain
         TabOrder = 1
         TabStop = True
         TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
-        ExplicitLeft = 865
       end
     end
     object ScrollBox1: TScrollBox
@@ -1412,7 +1401,6 @@ object FormMain: TFormMain
       BorderStyle = bsNone
       ParentBackground = True
       TabOrder = 1
-      ExplicitWidth = 912
       object TableExStat: TTableEx
         AlignWithMargins = True
         Left = 3
@@ -1480,7 +1468,6 @@ object FormMain: TFormMain
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 1
-    ExplicitWidth = 912
     object TableExList: TTableEx
       Left = 0
       Top = 43
@@ -1588,7 +1575,6 @@ object FormMain: TFormMain
         Alignment = taRightJustify
         Caption = #1060#1080#1083#1100#1090#1088
         Layout = tlCenter
-        ExplicitLeft = 21
         ExplicitHeight = 19
       end
       object ComboBoxFilterYear: TComboBox
@@ -1605,7 +1591,6 @@ object FormMain: TFormMain
         TabOrder = 0
         TextHint = #1043#1086#1076
         OnChange = ComboBoxFilterYearChange
-        ExplicitLeft = 86
       end
       object ComboBoxFilterGenre: TComboBox
         AlignWithMargins = True
@@ -1621,7 +1606,6 @@ object FormMain: TFormMain
         TabOrder = 1
         TextHint = #1046#1072#1085#1088#1099
         OnChange = ComboBoxFilterGenreChange
-        ExplicitLeft = 166
       end
       object ComboBoxFilterRating: TComboBox
         AlignWithMargins = True
@@ -1653,7 +1637,6 @@ object FormMain: TFormMain
           '8'
           '9'
           '10')
-        ExplicitLeft = 534
       end
       object ButtonFlat4: TButtonFlat
         AlignWithMargins = True
@@ -1707,7 +1690,6 @@ object FormMain: TFormMain
       Color = clWhite
       ParentBackground = False
       TabOrder = 2
-      ExplicitWidth = 912
       object Shape1: TShape
         AlignWithMargins = True
         Left = 347
@@ -1919,7 +1901,6 @@ object FormMain: TFormMain
         TabOrder = 3
         TabStop = True
         TextFormat = [tfSingleLine, tfVerticalCenter]
-        ExplicitLeft = 183
       end
       object ButtonFlatFindFilmGoogle: TButtonFlat
         AlignWithMargins = True
@@ -2012,7 +1993,6 @@ object FormMain: TFormMain
         TabOrder = 5
         TabStop = True
         TextFormat = [tfSingleLine, tfVerticalCenter]
-        ExplicitLeft = 648
       end
     end
     object PanelKSearch: TPanel
@@ -2027,7 +2007,6 @@ object FormMain: TFormMain
       TabOrder = 3
       Visible = False
       OnExit = PanelKSearchExit
-      ExplicitWidth = 912
       object TableExKinoSearch: TTableEx
         Left = 0
         Top = 51
@@ -2159,7 +2138,6 @@ object FormMain: TFormMain
           TabOrder = 0
           TabStop = True
           TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
-          ExplicitHeight = 42
         end
       end
     end
@@ -2172,8 +2150,6 @@ object FormMain: TFormMain
       BevelOuter = bvNone
       ParentBackground = False
       TabOrder = 4
-      ExplicitLeft = 5
-      ExplicitTop = 341
       object Shape6: TShape
         Left = 0
         Top = 0
@@ -2200,7 +2176,6 @@ object FormMain: TFormMain
         Alignment = taRightJustify
         Caption = #1042#1089#1077#1075#1086': 900'
         Layout = tlCenter
-        ExplicitLeft = -4
         ExplicitHeight = 19
       end
       object LabelListNotViewed: TLabel
@@ -2217,7 +2192,6 @@ object FormMain: TFormMain
         Alignment = taRightJustify
         Caption = #1053#1077' '#1087#1088#1086#1089#1084#1086#1090#1088#1077#1085#1086': 900'
         Layout = tlCenter
-        ExplicitLeft = 99
         ExplicitHeight = 19
       end
       object ButtonFlat7: TButtonFlat
@@ -2270,7 +2244,7 @@ object FormMain: TFormMain
     Left = 94
     Top = 392
     Bitmap = {
-      494C01010800D000A80020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C01010800D000040020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       00000000000036000000280000008000000060000000010020000000000000C0
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -3868,7 +3842,7 @@ object FormMain: TFormMain
     Left = 94
     Top = 320
     Bitmap = {
-      494C01011500A000080118001800FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C01011500A000040018001800FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       00000000000036000000280000006000000090000000010020000000000000D8
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

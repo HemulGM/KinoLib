@@ -32,7 +32,6 @@ interface
     FStrKinoType:string;
     FStrRating:string;
     FStrRating2:string;
-    FStrChanged:string;
     FStrViewed:string;
     FStrKPMarked:string;
     FStrDate:string;

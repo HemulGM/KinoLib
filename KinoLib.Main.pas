@@ -7,8 +7,8 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, System.Generics.Collections, Vcl.Grids,
   KinoLib.List, Vcl.ExtCtrls, HGM.Common.Settings,
   System.ImageList, Vcl.ImgList, Vcl.StdCtrls, Vcl.Buttons, IdSSLOpenSSL,
-  HGM.Common.Utils, HGM.WinAPI.ShellDlg, acPNG, IdHTTP, IdURI,
-  Vcl.Menus, HGM.Controls.PanelExt, HGM.Controls.VirtualTable, HGM.Button;
+  HGM.Common.Utils, HGM.WinAPI.ShellDlg, IdHTTP, IdURI, System.UITypes,
+  Vcl.Menus, HGM.Controls.PanelExt, HGM.Controls.VirtualTable, HGM.Button, acPNG;
 
 type
   TKinoElement = record
@@ -145,7 +145,6 @@ type
     procedure TableExListItemColClick(Sender: TObject;
       MouseButton: TMouseButton; const Index: Integer);
     procedure EditSearchKeyPress(Sender: TObject; var Key: Char);
-    procedure ButtonFlatSavePaint(Sender: TObject);
     procedure ButtonFlat1Click(Sender: TObject);
     procedure MenuItemSetKIDClick(Sender: TObject);
     procedure ButtonFlat7Click(Sender: TObject);
@@ -157,7 +156,6 @@ type
     FSettings:TSettingsIni;
     FSearchList:TKinoElements;
     FSearchID:Integer;
-    FFilterNotify: Boolean;
     procedure SetInterface;
     procedure SetMenuIconColor(Color: TColor);
     procedure SetMenuColor(Value: TColor);
@@ -186,7 +184,7 @@ var
 
 implementation
  uses ShellAPI, Direct2D, D2D1, ComObj, ActiveX, Math,
-      MSHTML, ADODB_TLB, CDO_TLB, System.StrUtils, Clipbrd;
+      MSHTML, System.StrUtils, Clipbrd;
 
 {$R *.dfm}
 
@@ -224,8 +222,8 @@ begin
 end;
 
 function GetTagPropValue(HTMLData, PropName:string; Offset:Integer = 1):string;
-var HData, tmp1:string;
-var i, p, e:Integer;
+var HData:string;
+    p, e:Integer;
 begin
  Result:='';
  HTMLData:=StringReplace(HTMLData, #13#10, ' ', [rfReplaceAll]);
@@ -329,34 +327,6 @@ procedure TFormMain.ButtonFlatSaveClick(Sender: TObject);
 begin
  SaveList;
  LoadList;
-end;
-
-procedure TFormMain.ButtonFlatSavePaint(Sender: TObject);
-var DR:TRect;
-    NW:Integer;
-    D2:TDirect2DCanvas;
-begin   {
- if SaveNotify then
-  begin
-   with TDirect2DCanvas.Create(ButtonFlatSave.Canvas, ButtonFlatSave.ClientRect) do
-    begin
-     try
-      RenderTarget.BeginDraw;
-      Brush.Style:=bsSolid;
-      Pen.Style:=psSolid;
-      NW:=8;
-      DR:=Rect(0, 0, NW, NW);
-      DR.SetLocation(ButtonFlatSave.ImageIndentLeft+ButtonFlatSave.Images.Width-4, (ButtonFlatSave.Height div 2 - ButtonFlatSave.Images.Height div 2)-4);
-      Pen.Color:=$0042A4FF;
-      Brush.Color:=$0042A4FF;
-      Ellipse(DR);
-      RenderTarget.EndDraw;
-     except
-
-     end;
-     Free;
-    end;
-  end;  }
 end;
 
 procedure TFormMain.ButtonFlatStatClick(Sender: TObject);
@@ -587,26 +557,25 @@ procedure TFormMain.ButtonFlat7Click(Sender: TObject);
 var i, r:Integer;
 begin
  Randomize;
- r:=0;
- for i:= 0 to 10 do
+ for i:= 0 to 20 do
   begin
    repeat
     r:=Random(FKinoList.Count);
    until IndexInList(r, FKinoList.Count) and (FKinoList[r].Viewed = False);
    TableExList.ItemIndex:=r;
    Application.ProcessMessages;
-   Sleep(i*20);
+   Sleep(i*10);
   end;
- FilmFindKinopoisk;
+ //FilmFindKinopoisk;
 end;
 
 function TFormMain.WebSearch(const Index:Integer):Integer;
-var RequestURL, tmp, tmp2:string;
+var RequestURL, tmp:string;
     HTTPObject:TIdHTTP;
     HTTPStream:TStringStream;
     IdSSLIOHandlerSocketOpenSSL:TIdSSLIOHandlerSocketOpenSSL;
     PageData:TStringList;
-    i, p:Integer;
+    p:Integer;
     Data:TKinoElement;
     Text:string;
 
@@ -650,7 +619,6 @@ begin
 end;
 
 begin
- Result:=-1;
  Text:=FKinoList[Index].Caption;
  RequestURL:=TIdURI.URLEncode(Format(BaseURL, [Text]));
  RequestURL:=TIdURI.PathEncode(Format(BaseURL, [Text]));
@@ -711,7 +679,7 @@ end;
 
 procedure TFormMain.LoadFile(FileName: string);
 var Excel, Sheet: Variant;
-    R, C, W, MaxWidth:Integer;
+    R, C, W:Integer;
 
 function ReadCellStr(aR, aC:Integer):string;
 begin
@@ -1399,7 +1367,11 @@ begin
   2: FKinoList.Items[ARow].KinoType:=TKinoType(ItemValue);
   3: FKinoList.Items[ARow].Year:=StrToInt(Value);
   4: FKinoList.Items[ARow].Genre:=Value;
-  5: FKinoList.Items[ARow].Rating:=Max(0, Min(ItemValue, 10));
+  5: begin
+      FKinoList.Items[ARow].Rating:=Max(0, Min(ItemValue, 10));
+      if FKinoList.Items[ARow].Rating > 0 then
+       FKinoList.Items[ARow].Viewed:=True;
+     end;
   6: FKinoList.Items[ARow].Rating2:=Max(0, Min(ItemValue, 10));
   7: FKinoList.Items[ARow].Viewed:=Boolean(ItemValue);
   8: FKinoList.Items[ARow].KPMarked:=Boolean(ItemValue);
