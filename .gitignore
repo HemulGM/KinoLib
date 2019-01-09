@@ -72,3 +72,7 @@ __recovery/
 *.db
 *.ini
 KinoLibGP.groupproj
+Win32/Debug/cef/cache/
+Win32/Release/cef/cache/
+Win32/Debug/cef/cookies/
+Win32/Release/cef/cookies/

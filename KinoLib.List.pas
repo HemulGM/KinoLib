@@ -9,6 +9,8 @@ interface
  type
   TKinoType = (ktFilm, ktSeries);
 
+  TGlobalFilter = (gfAll, gfNeedToWatch, gfNeedToRate);
+
   TKinoItem = class
    private
     FID:Integer;
@@ -95,13 +97,15 @@ interface
     FFilterRating: Integer;
     FFilterYear: Integer;
     FFilterGenre: string;
+    FGlobalFilter: TGlobalFilter;
     procedure SetFilterGenre(const Value: string);
     procedure SetFilterRating(const Value: Integer);
     procedure SetFilterYear(const Value: Integer);
+    procedure SetGlobalFilter(const Value: TGlobalFilter);
    public
     function Load:Boolean;
     function Save:Boolean;
-    function Search(Text:string; From:Integer):Integer;
+    function Search(Text:string; From:Integer; Full:Boolean = False):Integer;
     procedure Clear; override;
     procedure UpdateRecord(Index:Integer);
     procedure DeleteRecord(Index:Integer);
@@ -111,6 +115,7 @@ interface
     constructor Create(AOwner: TTableEx; const ADBFileName:string); overload;
     property OrderBy:string read FOrderBy write FOrderBy;
     property OrderDesc:Boolean read FOrderDesc write FOrderDesc;
+    property GlobalFilter:TGlobalFilter read FGlobalFilter write SetGlobalFilter;
     property FilterGenre:string read FFilterGenre write SetFilterGenre;
     property FilterYear:Integer read FFilterYear write SetFilterYear;
     property FilterRating:Integer read FFilterRating write SetFilterRating;
@@ -281,6 +286,7 @@ begin
  FFilterRating:=-1;
  FFilterYear:=-1;
  FFilterGenre:='';
+ FGlobalFilter:=gfAll;
  FDBFileName:=ADBFileName;
  try
   FSQLLite:=TSQLiteDatabase.Create(FDBFileName);
@@ -405,7 +411,15 @@ begin
     if FFilterRating >= 0 then WhereFieldEqual(fnRating, FFilterRating);
     if FFilterYear >= 0 then WhereFieldEqual(fnYear, FFilterYear, wuAnd);
     if FFilterGenre <> '' then WhereFieldEqual(fnGenre, FFilterGenre, wuAnd);
-
+    case FGlobalFilter of
+     //gfAll: ;
+     gfNeedToWatch: WhereFieldEqual(fnViewed, False);
+     gfNeedToRate:
+      begin
+       WhereFieldEqual(fnViewed, True);
+       WhereFieldEqual(fnKPMarked, False);
+      end;
+    end;
     RTable:=FSQLLite.GetTable(GetSQL);
     EndCreate;
    end;
@@ -449,7 +463,7 @@ begin
  Result:=True;
 end;
 
-function TKinoItems.Search(Text: string; From: Integer): Integer;
+function TKinoItems.Search(Text: string; From: Integer; Full:Boolean = False): Integer;
 var i:Integer;
 begin
  Result:=-1;
@@ -457,11 +471,13 @@ begin
  Text:=AnsiLowerCase(Text);
  for i:= From to Count-1 do
   begin
-   if Pos(Text, AnsiLowerCase(Items[i].Caption)) > 0 then
+   if Full then
     begin
-     //if From = i then Continue;
-     
-     Exit(i);
+     if Text = AnsiLowerCase(Items[i].Caption) then Exit(i);
+    end
+   else
+    begin
+     if Pos(Text, AnsiLowerCase(Items[i].Caption)) > 0 then Exit(i);
     end;
   end;
  if From > 0 then Result:=Search(Text, 0);
@@ -485,6 +501,13 @@ procedure TKinoItems.SetFilterYear(const Value: Integer);
 begin
  if FFilterYear = Value then Exit;
  FFilterYear:=Value;
+ Load;
+end;
+
+procedure TKinoItems.SetGlobalFilter(const Value: TGlobalFilter);
+begin
+ if FGlobalFilter = Value then Exit;
+ FGlobalFilter:=Value;
  Load;
 end;
 
@@ -562,8 +585,9 @@ begin
  Viewed:=0;
  Marks:=0;
  MCount:=0;
- OldYear:=-1;
+ OldYear:=0;
  LastTopFilm:='';
+ OldFilm:='Не известно';
  GenreCnt:=0;
  Year:=0;
  Years:=TYDict.Create;

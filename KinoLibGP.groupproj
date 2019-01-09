@@ -9,6 +9,9 @@
         <Projects Include="..\Components\HGMComponents.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="..\CEF4Delphi-master\packages\CEF4Delphi.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -35,14 +38,23 @@
     <Target Name="HGMComponents:Make">
         <MSBuild Projects="..\Components\HGMComponents.dproj" Targets="Make"/>
     </Target>
+    <Target Name="CEF4Delphi">
+        <MSBuild Projects="..\CEF4Delphi-master\packages\CEF4Delphi.dproj"/>
+    </Target>
+    <Target Name="CEF4Delphi:Clean">
+        <MSBuild Projects="..\CEF4Delphi-master\packages\CEF4Delphi.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="CEF4Delphi:Make">
+        <MSBuild Projects="..\CEF4Delphi-master\packages\CEF4Delphi.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="KinoLib;HGMComponents"/>
+        <CallTarget Targets="KinoLib;HGMComponents;CEF4Delphi"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="KinoLib:Clean;HGMComponents:Clean"/>
+        <CallTarget Targets="KinoLib:Clean;HGMComponents:Clean;CEF4Delphi:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="KinoLib:Make;HGMComponents:Make"/>
+        <CallTarget Targets="KinoLib:Make;HGMComponents:Make;CEF4Delphi:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
