@@ -105,6 +105,7 @@ interface
    public
     function Load:Boolean;
     function Save:Boolean;
+    function ListCount(GFilter:TGlobalFilter):Integer;
     function Search(Text:string; From:Integer; Full:Boolean = False):Integer;
     procedure Clear; override;
     procedure UpdateRecord(Index:Integer);
@@ -309,7 +310,10 @@ begin
      EndCreate;
     end;
  except
-
+  begin
+   MessageBox(Application.Handle, 'Произошла ошибка при подключении файла базы данных!', 'Ошибка', MB_ICONSTOP or MB_OK);
+   Halt;
+  end;
  end;
 end;
 
@@ -377,6 +381,29 @@ begin
     Distinct:=True;
     FSQLLite.GetTableStrings(GetSQL, Items);
     Result:=Items.Count;
+    EndCreate;
+   end;
+ finally
+
+ end;
+end;
+
+function TKinoItems.ListCount(GFilter: TGlobalFilter): Integer;
+begin
+ try
+  with SQL.Select(Table) do
+   begin
+    AddField('Count(*)');
+    case GFilter of
+     //gfAll: ;
+     gfNeedToWatch: WhereFieldEqual(fnViewed, False);
+     gfNeedToRate:
+      begin
+       WhereFieldEqual(fnViewed, True);
+       WhereFieldEqual(fnKPMarked, False);
+      end;
+    end;
+    Result:=FSQLLite.GetTableValue(GetSQL);
     EndCreate;
    end;
  finally
@@ -508,7 +535,6 @@ procedure TKinoItems.SetGlobalFilter(const Value: TGlobalFilter);
 begin
  if FGlobalFilter = Value then Exit;
  FGlobalFilter:=Value;
- Load;
 end;
 
 procedure TKinoItems.UpdateRecord(Index: Integer);

@@ -617,7 +617,7 @@ object FormMain: TFormMain
       Color = clWhite
       ParentBackground = False
       TabOrder = 0
-      object ButtonFlat8: TButtonFlat
+      object ButtonFlatSearchBoard: TButtonFlat
         Left = 0
         Top = 0
         Width = 719
@@ -659,13 +659,13 @@ object FormMain: TFormMain
       end
       object EditSearch: TEdit
         AlignWithMargins = True
-        Left = 45
+        Left = 50
         Top = 5
-        Width = 629
+        Width = 619
         Height = 34
-        Margins.Left = 45
+        Margins.Left = 50
         Margins.Top = 5
-        Margins.Right = 45
+        Margins.Right = 50
         Margins.Bottom = 5
         Align = alClient
         AutoSelect = False
@@ -679,13 +679,17 @@ object FormMain: TFormMain
         TabOrder = 0
         TextHint = #1055#1086#1080#1089#1082' '
         OnChange = ButtonSearchClick
+        OnEnter = EditSearchEnter
+        OnExit = EditSearchExit
         OnKeyPress = EditSearchKeyPress
+        ExplicitLeft = 46
+        ExplicitWidth = 629
       end
       object ButtonSearch: TButtonFlat
         AlignWithMargins = True
-        Left = 11
+        Left = 15
         Top = 5
-        Width = 35
+        Width = 33
         Height = 34
         Margins.Left = 5
         Margins.Top = 5
@@ -731,7 +735,7 @@ object FormMain: TFormMain
       end
       object ButtonFlatSearchClear: TButtonFlat
         AlignWithMargins = True
-        Left = 674
+        Left = 669
         Top = 5
         Width = 35
         Height = 34
@@ -2632,8 +2636,6 @@ object FormMain: TFormMain
         SubTextFont.Name = 'Tahoma'
         SubTextFont.Style = []
         Visible = False
-        ExplicitLeft = 745
-        ExplicitTop = -3
       end
     end
     object PanelKSearch: TPanel
@@ -2907,7 +2909,7 @@ object FormMain: TFormMain
     Left = 102
     Top = 328
     Bitmap = {
-      494C01010800D000200020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C01010800D000340020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       00000000000036000000280000008000000060000000010020000000000000C0
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -4505,7 +4507,7 @@ object FormMain: TFormMain
     Left = 102
     Top = 248
     Bitmap = {
-      494C01011800A000380018001800FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C01011800A0004C0018001800FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000060000000A8000000010020000000000000FC
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

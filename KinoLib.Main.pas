@@ -97,7 +97,7 @@ type
     ButtonFlat7: TButtonFlat;
     Shape7: TShape;
     Shape8: TShape;
-    ButtonFlat8: TButtonFlat;
+    ButtonFlatSearchBoard: TButtonFlat;
     ButtonFlatListAll: TButtonFlat;
     ButtonFlatNeedToWatch: TButtonFlat;
     ButtonFlatNeedToRate: TButtonFlat;
@@ -196,6 +196,8 @@ type
     procedure SplitterPaint(Sender: TObject);
     procedure SplitterMoved(Sender: TObject);
     procedure ButtonFlatCloseBrowserClick(Sender: TObject);
+    procedure EditSearchEnter(Sender: TObject);
+    procedure EditSearchExit(Sender: TObject);
   private
     FSaveNotify:Boolean;
     FKinoList:TKinoItems;
@@ -552,6 +554,10 @@ begin
       end;
     end;
   end;
+
+ ButtonFlatNeedToRate.VisibleSubText:=(ButtonFlatNeedToRate.SubText <> '0') and (PanelMenu.Width > 46);
+ ButtonFlatNeedToWatch.VisibleSubText:=(ButtonFlatNeedToWatch.SubText <> '0')  and (PanelMenu.Width > 46);
+ ButtonFlatListAll.VisibleSubText:=(ButtonFlatListAll.SubText <> '0')  and (PanelMenu.Width > 46);
 end;
 
 procedure DeleteRow(Grid: TStringGrid; ARow: Integer);
@@ -646,7 +652,7 @@ end;
 procedure TFormMain.ButtonFlat2Click(Sender: TObject);
 begin
  if PanelMenu.Width > 46 then PanelMenu.Width:=46
- else PanelMenu.Width:=250;
+ else PanelMenu.Width:=300;
  UpdateMenu;
 end;
 
@@ -997,18 +1003,21 @@ end;
 procedure TFormMain.ButtonFlatListAllClick(Sender: TObject);
 begin
  FKinoList.GlobalFilter:=gfAll;
+ FKinoList.Load;
  UpdateGlobalFilter;
 end;
 
 procedure TFormMain.ButtonFlatNeedToRateClick(Sender: TObject);
 begin
  FKinoList.GlobalFilter:=gfNeedToRate;
+ FKinoList.Load;
  UpdateGlobalFilter;
 end;
 
 procedure TFormMain.ButtonFlatNeedToWatchClick(Sender: TObject);
 begin
  FKinoList.GlobalFilter:=gfNeedToWatch;
+ FKinoList.Load;
  UpdateGlobalFilter;
 end;
 
@@ -1182,6 +1191,18 @@ begin
     Free;
    end;
   end;
+end;
+
+procedure TFormMain.EditSearchEnter(Sender: TObject);
+begin
+ ButtonFlatSearchBoard.BorderColor:=$00AFA59E;
+ ButtonFlatSearchBoard.BorderWidth:=2;
+end;
+
+procedure TFormMain.EditSearchExit(Sender: TObject);
+begin
+ ButtonFlatSearchBoard.BorderColor:=$00E5E1DF;
+ ButtonFlatSearchBoard.BorderWidth:=1;
 end;
 
 procedure TFormMain.EditSearchKeyPress(Sender: TObject; var Key: Char);
@@ -1439,6 +1460,7 @@ end;
 
 procedure TFormMain.LoadList;
 var Items:TStringList;
+    V:Integer;
 begin
  FKinoList.Load;
  Items:=TStringList.Create;
@@ -1449,6 +1471,20 @@ begin
  ComboBoxFilterYear.Items.Assign(Items);
 
  Items.Free;
+
+ V:=FKinoList.ListCount(gfNeedToRate);
+ ButtonFlatNeedToRate.NotifyVisible:=V > 0;
+ ButtonFlatNeedToRate.SubText:=V.ToString;
+ ButtonFlatNeedToRate.VisibleSubText:=(V > 0) and (PanelMenu.Width > 46);
+
+ V:=FKinoList.ListCount(gfNeedToWatch);
+ ButtonFlatNeedToWatch.NotifyVisible:=V > 0;
+ ButtonFlatNeedToWatch.SubText:=V.ToString;
+ ButtonFlatNeedToWatch.VisibleSubText:=(V > 0) and (PanelMenu.Width > 46);
+
+ V:=FKinoList.ListCount(gfAll);
+ ButtonFlatListAll.SubText:=V.ToString;
+ ButtonFlatListAll.VisibleSubText:=(V > 0) and (PanelMenu.Width > 46);
 end;
 
 procedure TFormMain.MenuItemSetKIDClick(Sender: TObject);
