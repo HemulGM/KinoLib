@@ -729,12 +729,12 @@ begin
   begin
    repeat
     r:=Random(FKinoList.Count);
-   until IndexInList(r, FKinoList.Count) and (FKinoList[r].Viewed = False);
+   until IndexInList(r, FKinoList.Count) and (FKinoList[r].Viewed = False) and (FKinoList[r].KinoType = ktFilm);
    TableExList.ItemIndex:=r;
    Application.ProcessMessages;
    Sleep(i*10);
   end;
- //FilmFindKinopoisk;
+ if CEFWindowParent.Width > 10 then FilmFindKinopoisk;
 end;
 
 procedure TFormMain.ButtonFlat9Click(Sender: TObject);
