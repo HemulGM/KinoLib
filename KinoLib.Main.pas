@@ -198,6 +198,7 @@ type
     procedure ButtonFlatCloseBrowserClick(Sender: TObject);
     procedure EditSearchEnter(Sender: TObject);
     procedure EditSearchExit(Sender: TObject);
+    procedure FormResize(Sender: TObject);
   private
     FSaveNotify:Boolean;
     FKinoList:TKinoItems;
@@ -1456,6 +1457,11 @@ begin
  FSettings.SetInt('Columns', 'Date', TableExList.Columns[10].Width);
  FSettings.SetParamWindow('General', FormMain, [wpsAll]);
  SaveList;
+end;
+
+procedure TFormMain.FormResize(Sender: TObject);
+begin
+  if (Chromium <> nil) then Chromium.NotifyMoveOrResizeStarted;
 end;
 
 procedure TFormMain.LoadList;

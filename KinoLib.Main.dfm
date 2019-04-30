@@ -16,6 +16,7 @@ object FormMain: TFormMain
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   OnDestroy = FormDestroy
+  OnResize = FormResize
   PixelsPerInch = 96
   TextHeight = 19
   object ShapeSplit: TShape
@@ -649,6 +650,7 @@ object FormMain: TFormMain
         Shape = stRoundRect
         ShowFocusRect = False
         TabOrder = 3
+        TabStop = True
         TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
         SubTextFont.Charset = DEFAULT_CHARSET
         SubTextFont.Color = clWhite
@@ -722,6 +724,7 @@ object FormMain: TFormMain
         Shape = stCircle
         ShowFocusRect = False
         TabOrder = 1
+        TabStop = True
         TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
         SubTextFont.Charset = DEFAULT_CHARSET
         SubTextFont.Color = clWhite
@@ -769,6 +772,7 @@ object FormMain: TFormMain
         Shape = stCircle
         ShowFocusRect = False
         TabOrder = 2
+        TabStop = True
         TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
         SubTextFont.Charset = DEFAULT_CHARSET
         SubTextFont.Color = clWhite
@@ -820,6 +824,7 @@ object FormMain: TFormMain
       Shape = stCircle
       ShowFocusRect = False
       TabOrder = 1
+      TabStop = True
       TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
       SubTextFont.Charset = DEFAULT_CHARSET
       SubTextFont.Color = clWhite
@@ -934,6 +939,7 @@ object FormMain: TFormMain
       Shape = stRoundRect
       ShowFocusRect = False
       TabOrder = 0
+      TabStop = True
       TextFormat = [tfSingleLine, tfVerticalCenter]
       SubTextFont.Charset = DEFAULT_CHARSET
       SubTextFont.Color = clWhite
@@ -983,6 +989,7 @@ object FormMain: TFormMain
       Shape = stRoundRect
       ShowFocusRect = False
       TabOrder = 1
+      TabStop = True
       TextFormat = [tfSingleLine, tfVerticalCenter]
       SubTextFont.Charset = DEFAULT_CHARSET
       SubTextFont.Color = clWhite
@@ -1032,6 +1039,7 @@ object FormMain: TFormMain
       Shape = stRoundRect
       ShowFocusRect = False
       TabOrder = 2
+      TabStop = True
       TextFormat = [tfSingleLine, tfVerticalCenter]
       SubTextFont.Charset = DEFAULT_CHARSET
       SubTextFont.Color = clWhite
@@ -1081,6 +1089,7 @@ object FormMain: TFormMain
       Shape = stRoundRect
       ShowFocusRect = False
       TabOrder = 3
+      TabStop = True
       TextFormat = [tfSingleLine, tfVerticalCenter]
       SubTextFont.Charset = DEFAULT_CHARSET
       SubTextFont.Color = clWhite
@@ -1130,6 +1139,7 @@ object FormMain: TFormMain
       Shape = stRoundRect
       ShowFocusRect = False
       TabOrder = 4
+      TabStop = True
       TextFormat = [tfSingleLine, tfVerticalCenter]
       SubTextFont.Charset = DEFAULT_CHARSET
       SubTextFont.Color = clWhite
@@ -1143,7 +1153,7 @@ object FormMain: TFormMain
       Top = 56
       Width = 36
       Height = 36
-      Hint = #1060#1080#1083#1100#1090#1088
+      Hint = #1042#1089#1077' '#1092#1080#1083#1100#1084#1099
       Margins.Left = 0
       Margins.Top = 2
       Margins.Right = 5
@@ -1179,6 +1189,7 @@ object FormMain: TFormMain
       Shape = stRoundRect
       ShowFocusRect = False
       TabOrder = 5
+      TabStop = True
       TextFormat = [tfSingleLine, tfVerticalCenter]
       SubTextFont.Charset = DEFAULT_CHARSET
       SubTextFont.Color = clWhite
@@ -1192,7 +1203,7 @@ object FormMain: TFormMain
       Top = 96
       Width = 36
       Height = 36
-      Hint = #1060#1080#1083#1100#1090#1088
+      Hint = #1053#1091#1078#1085#1086' '#1087#1086#1089#1084#1086#1090#1088#1077#1090#1100
       Margins.Left = 0
       Margins.Top = 2
       Margins.Right = 5
@@ -1228,6 +1239,7 @@ object FormMain: TFormMain
       Shape = stRoundRect
       ShowFocusRect = False
       TabOrder = 6
+      TabStop = True
       TextFormat = [tfSingleLine, tfVerticalCenter]
       SubTextFont.Charset = DEFAULT_CHARSET
       SubTextFont.Color = clWhite
@@ -1241,7 +1253,7 @@ object FormMain: TFormMain
       Top = 136
       Width = 36
       Height = 36
-      Hint = #1060#1080#1083#1100#1090#1088
+      Hint = #1053#1091#1078#1085#1086' '#1087#1086#1089#1090#1072#1074#1080#1090#1100' '#1086#1094#1077#1085#1082#1091
       Margins.Left = 0
       Margins.Top = 2
       Margins.Right = 5
@@ -1277,6 +1289,7 @@ object FormMain: TFormMain
       Shape = stRoundRect
       ShowFocusRect = False
       TabOrder = 7
+      TabStop = True
       TextFormat = [tfSingleLine, tfVerticalCenter]
       SubTextFont.Charset = DEFAULT_CHARSET
       SubTextFont.Color = clWhite
@@ -1364,6 +1377,7 @@ object FormMain: TFormMain
         Shape = stCircle
         ShowFocusRect = False
         TabOrder = 0
+        TabStop = True
         TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
         SubTextFont.Charset = DEFAULT_CHARSET
         SubTextFont.Color = clWhite
@@ -1413,6 +1427,7 @@ object FormMain: TFormMain
         Shape = stCircle
         ShowFocusRect = False
         TabOrder = 1
+        TabStop = True
         TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
         SubTextFont.Charset = DEFAULT_CHARSET
         SubTextFont.Color = clWhite
@@ -1580,6 +1595,7 @@ object FormMain: TFormMain
         Shape = stCircle
         ShowFocusRect = False
         TabOrder = 0
+        TabStop = True
         TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
         SubTextFont.Charset = DEFAULT_CHARSET
         SubTextFont.Color = clWhite
@@ -1705,6 +1721,7 @@ object FormMain: TFormMain
             Shape = stRoundRect
             ShowFocusRect = False
             TabOrder = 0
+            TabStop = True
             TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
             SubTextFont.Charset = DEFAULT_CHARSET
             SubTextFont.Color = clWhite
@@ -1754,6 +1771,7 @@ object FormMain: TFormMain
             Shape = stRoundRect
             ShowFocusRect = False
             TabOrder = 1
+            TabStop = True
             TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
             SubTextFont.Charset = DEFAULT_CHARSET
             SubTextFont.Color = clWhite
@@ -1836,6 +1854,7 @@ object FormMain: TFormMain
             Shape = stRoundRect
             ShowFocusRect = False
             TabOrder = 0
+            TabStop = True
             TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
             SubTextFont.Charset = DEFAULT_CHARSET
             SubTextFont.Color = clWhite
@@ -1885,6 +1904,7 @@ object FormMain: TFormMain
             Shape = stRoundRect
             ShowFocusRect = False
             TabOrder = 1
+            TabStop = True
             TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
             SubTextFont.Charset = DEFAULT_CHARSET
             SubTextFont.Color = clWhite
@@ -1933,6 +1953,7 @@ object FormMain: TFormMain
         RoundRectParam = 0
         ShowFocusRect = False
         TabOrder = 0
+        TabStop = True
         TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
         SubTextFont.Charset = DEFAULT_CHARSET
         SubTextFont.Color = clWhite
@@ -1970,6 +1991,7 @@ object FormMain: TFormMain
         RoundRectParam = 0
         ShowFocusRect = False
         TabOrder = 1
+        TabStop = True
         TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
         SubTextFont.Charset = DEFAULT_CHARSET
         SubTextFont.Color = clWhite
@@ -2211,6 +2233,7 @@ object FormMain: TFormMain
         Shape = stRoundRect
         ShowFocusRect = False
         TabOrder = 3
+        TabStop = True
         TextFormat = [tfSingleLine, tfVerticalCenter]
         SubTextFont.Charset = DEFAULT_CHARSET
         SubTextFont.Color = clWhite
@@ -2299,6 +2322,7 @@ object FormMain: TFormMain
         Shape = stRoundRect
         ShowFocusRect = False
         TabOrder = 0
+        TabStop = True
         TextFormat = [tfSingleLine, tfVerticalCenter]
         SubTextFont.Charset = DEFAULT_CHARSET
         SubTextFont.Color = clWhite
@@ -2349,6 +2373,7 @@ object FormMain: TFormMain
         Shape = stRoundRect
         ShowFocusRect = False
         TabOrder = 1
+        TabStop = True
         TextFormat = [tfSingleLine, tfVerticalCenter]
         SubTextFont.Charset = DEFAULT_CHARSET
         SubTextFont.Color = clWhite
@@ -2399,6 +2424,7 @@ object FormMain: TFormMain
         Shape = stRoundRect
         ShowFocusRect = False
         TabOrder = 2
+        TabStop = True
         TextFormat = [tfSingleLine, tfVerticalCenter]
         SubTextFont.Charset = DEFAULT_CHARSET
         SubTextFont.Color = clWhite
@@ -2449,6 +2475,7 @@ object FormMain: TFormMain
         Shape = stRoundRect
         ShowFocusRect = False
         TabOrder = 3
+        TabStop = True
         TextFormat = [tfSingleLine, tfVerticalCenter]
         SubTextFont.Charset = DEFAULT_CHARSET
         SubTextFont.Color = clWhite
@@ -2499,6 +2526,7 @@ object FormMain: TFormMain
         Shape = stRoundRect
         ShowFocusRect = False
         TabOrder = 4
+        TabStop = True
         TextFormat = [tfSingleLine, tfVerticalCenter]
         SubTextFont.Charset = DEFAULT_CHARSET
         SubTextFont.Color = clWhite
@@ -2549,6 +2577,7 @@ object FormMain: TFormMain
         Shape = stRoundRect
         ShowFocusRect = False
         TabOrder = 5
+        TabStop = True
         TextFormat = [tfSingleLine, tfVerticalCenter]
         SubTextFont.Charset = DEFAULT_CHARSET
         SubTextFont.Color = clWhite
@@ -2597,6 +2626,7 @@ object FormMain: TFormMain
         Shape = stRoundRect
         ShowFocusRect = False
         TabOrder = 6
+        TabStop = True
         TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
         SubTextFont.Charset = DEFAULT_CHARSET
         SubTextFont.Color = clWhite
@@ -2747,6 +2777,7 @@ object FormMain: TFormMain
           Shape = stCircle
           ShowFocusRect = False
           TabOrder = 0
+          TabStop = True
           TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
           SubTextFont.Charset = DEFAULT_CHARSET
           SubTextFont.Color = clWhite
@@ -2851,6 +2882,7 @@ object FormMain: TFormMain
         Shape = stRoundRect
         ShowFocusRect = False
         TabOrder = 0
+        TabStop = True
         TextFormat = [tfSingleLine, tfVerticalCenter]
         SubTextFont.Charset = DEFAULT_CHARSET
         SubTextFont.Color = clWhite
@@ -2866,6 +2898,7 @@ object FormMain: TFormMain
       Height = 295
       Align = alRight
       TabOrder = 5
+      OnResize = FormResize
     end
   end
   object ImageListKType: TImageList
@@ -2875,7 +2908,7 @@ object FormMain: TFormMain
     Left = 102
     Top = 328
     Bitmap = {
-      494C01010800D000380020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C01010800D000040020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       00000000000036000000280000008000000060000000010020000000000000C0
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -4473,7 +4506,7 @@ object FormMain: TFormMain
     Left = 102
     Top = 248
     Bitmap = {
-      494C01011800A000500018001800FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C01011800A000040018001800FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000060000000A8000000010020000000000000FC
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
