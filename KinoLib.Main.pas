@@ -543,6 +543,7 @@ begin
     begin
      if PanelMenu.Width <= 46 then
       begin
+       //TODO Скрыть заголовоки
        (PanelMenu.Controls[i] as TButtonFlat).Shape:=stCircle;
        (PanelMenu.Controls[i] as TButtonFlat).Margins.Left:=5;
        (PanelMenu.Controls[i] as TButtonFlat).ImageIndentLeft:=6;
@@ -877,7 +878,8 @@ begin
  try
   HTTPObject.Get(RequestURL, HTTPStream);
   HTTPStream.Position:=0;
-  PageData.LoadFromStream(HTTPStream);
+
+  PageData.Text := UTF8Decode(HTTPStream.DataString);
   //PageData.Text:=Memo1.Text;
   p:=1;
   Data:=GetElementData(GetHTMLTag(PageData.Text, 'div', 'element most_wanted', False, p));
