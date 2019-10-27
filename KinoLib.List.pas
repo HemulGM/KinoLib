@@ -191,7 +191,6 @@ begin
  FStrCaption:=FCaption;
  DoChanged;
 end;
-
 procedure TKinoItem.SetDate(const Value: TDateTime);
 begin
  FDate:=Value;

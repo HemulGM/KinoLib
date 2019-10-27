@@ -54,7 +54,7 @@ object FormImportExcel: TFormImportExcel
       Left = 206
       Top = 0
       Width = 699
-      Height = 41
+      Height = 32
       Align = alRight
       Caption = 
         #1053#1077#1086#1073#1093#1086#1076#1080#1084' '#1092#1072#1081#1083' Excel '#1089#1086' '#1089#1083#1077#1076#1091#1102#1097#1080#1084#1080' '#1089#1090#1086#1083#1073#1094#1072#1084#1080' '#1087#1086' '#1087#1086#1088#1103#1076#1082#1091': '#1085#1072#1079#1074#1072#1085#1080 +
@@ -68,35 +68,43 @@ object FormImportExcel: TFormImportExcel
       ParentFont = False
       Layout = tlCenter
       WordWrap = True
-      ExplicitHeight = 32
     end
     object ButtonFlatOpen: TButtonFlat
       Left = 0
       Top = 0
       Width = 161
       Height = 41
-      ImageIndex = -1
-      ImageOver = -1
-      ImagePress = -1
-      ImageIndentLeft = 3
-      ImageIndentRight = 3
+      Align = alLeft
       Caption = #1042#1099#1073#1088#1072#1090#1100' '#1092#1072#1081#1083'...'
+      ColorNormal = 10114859
+      ColorOver = 9062169
+      ColorPressed = 11889982
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -16
       Font.Name = 'Tahoma'
       Font.Style = []
-      TextFormat = [taLeft, taVCenter, taWordBrake, taSingleLine]
+      FontOver.Charset = DEFAULT_CHARSET
+      FontOver.Color = clWindowText
+      FontOver.Height = -13
+      FontOver.Name = 'Tahoma'
+      FontOver.Style = []
+      FontDown.Charset = DEFAULT_CHARSET
+      FontDown.Color = clWindowText
+      FontDown.Height = -13
+      FontDown.Name = 'Tahoma'
+      FontDown.Style = []
+      ImageIndentRight = 3
       RoundRectParam = 0
-      IgnorBounds = False
-      EllipseRectVertical = False
-      ColorNormal = 10114859
-      ColorPressed = 11889982
-      ColorOver = 9062169
-      ParentBackground = False
-      Align = alLeft
+      ShowFocusRect = False
       TabOrder = 0
       TabStop = True
+      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
+      SubTextFont.Charset = DEFAULT_CHARSET
+      SubTextFont.Color = clWhite
+      SubTextFont.Height = -13
+      SubTextFont.Name = 'Tahoma'
+      SubTextFont.Style = []
     end
   end
   object Panel2: TPanel
@@ -114,28 +122,37 @@ object FormImportExcel: TFormImportExcel
       Top = 0
       Width = 249
       Height = 41
-      ImageIndex = -1
-      ImageOver = -1
-      ImagePress = -1
-      ImageIndentLeft = 3
-      ImageIndentRight = 3
+      Align = alRight
       Caption = #1048#1084#1087#1086#1088#1090#1080#1088#1086#1074#1072#1090#1100' '#1074#1089#1077' '#1079#1072#1087#1080#1089#1080
+      ColorNormal = 10114859
+      ColorOver = 9062169
+      ColorPressed = 11889982
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -16
       Font.Name = 'Tahoma'
       Font.Style = []
-      TextFormat = [taLeft, taVCenter, taWordBrake, taSingleLine]
+      FontOver.Charset = DEFAULT_CHARSET
+      FontOver.Color = clWindowText
+      FontOver.Height = -13
+      FontOver.Name = 'Tahoma'
+      FontOver.Style = []
+      FontDown.Charset = DEFAULT_CHARSET
+      FontDown.Color = clWindowText
+      FontDown.Height = -13
+      FontDown.Name = 'Tahoma'
+      FontDown.Style = []
+      ImageIndentRight = 3
       RoundRectParam = 0
-      IgnorBounds = False
-      EllipseRectVertical = False
-      ColorNormal = 10114859
-      ColorPressed = 11889982
-      ColorOver = 9062169
-      ParentBackground = False
-      Align = alRight
+      ShowFocusRect = False
       TabOrder = 0
       TabStop = True
+      TextFormat = [tfCenter, tfSingleLine, tfVerticalCenter]
+      SubTextFont.Charset = DEFAULT_CHARSET
+      SubTextFont.Color = clWhite
+      SubTextFont.Height = -13
+      SubTextFont.Name = 'Tahoma'
+      SubTextFont.Style = []
     end
   end
   object FileOpenDialogXLS: TFileOpenDialog

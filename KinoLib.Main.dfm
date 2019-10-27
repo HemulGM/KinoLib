@@ -17,6 +17,7 @@ object FormMain: TFormMain
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnResize = FormResize
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 19
   object ShapeSplit: TShape
@@ -734,9 +735,9 @@ object FormMain: TFormMain
       end
       object ButtonFlatSearchClear: TButtonFlat
         AlignWithMargins = True
-        Left = 669
+        Left = 670
         Top = 5
-        Width = 35
+        Width = 34
         Height = 34
         Margins.Left = 5
         Margins.Top = 5
@@ -2901,6 +2902,38 @@ object FormMain: TFormMain
       OnResize = FormResize
     end
   end
+  object PanelLoading: TPanel
+    Left = 1013
+    Top = 372
+    Width = 201
+    Height = 391
+    BevelOuter = bvNone
+    Caption = 'Loading...'
+    Color = 10114859
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
+    Font.Height = -27
+    Font.Name = 'Roboto'
+    Font.Style = []
+    Font.Quality = fqProof
+    ParentBackground = False
+    ParentFont = False
+    TabOrder = 5
+    Visible = False
+    DesignSize = (
+      201
+      391)
+    object ActivityIndicatorLoading: TActivityIndicator
+      Left = 67
+      Top = 114
+      Anchors = []
+      FrameDelay = 30
+      IndicatorColor = aicWhite
+      IndicatorSize = aisXLarge
+      ExplicitLeft = 227
+      ExplicitTop = 99
+    end
+  end
   object ImageListKType: TImageList
     ColorDepth = cd32Bit
     Height = 32
@@ -2908,7 +2941,7 @@ object FormMain: TFormMain
     Left = 102
     Top = 328
     Bitmap = {
-      494C01010800D000040020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C01010800D0000C0020002000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       00000000000036000000280000008000000060000000010020000000000000C0
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -4506,7 +4539,7 @@ object FormMain: TFormMain
     Left = 102
     Top = 248
     Bitmap = {
-      494C01011800A000040018001800FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C01011800A0000C0018001800FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000060000000A8000000010020000000000000FC
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
