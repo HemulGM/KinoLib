@@ -9,9 +9,9 @@ uses
   HGM.Common.Settings, System.ImageList, Vcl.ImgList, Vcl.StdCtrls, Vcl.Buttons,
   IdSSLOpenSSL, HGM.Common.Utils, HGM.WinAPI.ShellDlg, IdHTTP, IdURI,
   System.UITypes, Vcl.Menus, HGM.Controls.PanelExt, HGM.Controls.VirtualTable,
-  HGM.Button, acPNG, Vcl.ComCtrls, Vcl.OleCtrls, SHDocVw, uCEFChromium,
+  HGM.Button, Vcl.ComCtrls, Vcl.OleCtrls, SHDocVw, uCEFChromium,
   uCEFApplication, uCEFWindowParent, uCEFInterfaces, uCEFConstants, uCEFTypes,
-  uCEFWinControl, Vcl.WinXCtrls;
+  uCEFWinControl, Vcl.WinXCtrls, Vcl.Imaging.pngimage, uCEFChromiumCore;
 
 type
   TKinoElement = record

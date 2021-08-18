@@ -6,9 +6,6 @@ uses
   Vcl.Forms,
   KinoLib.Main in 'KinoLib.Main.pas' {FormMain},
   KinoLib.List in 'KinoLib.List.pas',
-  SQLite3 in '..\SQLite\SQLite3.pas',
-  SQLiteTable3 in '..\SQLite\SQLiteTable3.pas',
-  SQLLang in '..\SQLite\SQLLang.pas',
   uCEFApplication;
 
 {$R *.res}
@@ -21,7 +18,6 @@ begin
   GlobalCEFApp.LocalesDirPath  := 'cef\locales';
   //GlobalCEFApp.EnableGPU       := True;
   GlobalCEFApp.cache           := 'cef\cache';
-  GlobalCEFApp.cookies         := 'cef\cookies';
   GlobalCEFApp.UserDataPath    := 'cef\User Data';
   GlobalCEFApp.SingleProcess   := True;
   GlobalCEFApp.FastUnload      := True;

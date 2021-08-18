@@ -4,7 +4,7 @@ interface
  uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, System.Generics.Collections, Vcl.Grids,
-  HGM.Controls.VirtualTable, SQLLang, SQLiteTable3;
+  HGM.Controls.VirtualTable, HGM.SQLang, HGM.SQLite;
 
  type
   TKinoType = (ktFilm, ktSeries);
@@ -564,7 +564,7 @@ begin
      FSQLLite.ExecSQL(GetSQL);
      EndCreate;
     end;
-   Items[Index].FID:=FSQLLite.GetLastInsertRowID;
+   Items[Index].FID:=FSQLLite.LastInsertRowID;
    Items[Index].FChanged:=False;
   end
  else
